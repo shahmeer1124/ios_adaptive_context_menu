@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - ios_adaptive_context_menu (0.1.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ios_adaptive_context_menu (from `.symlinks/plugins/ios_adaptive_context_menu/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ios_adaptive_context_menu:
+    :path: ".symlinks/plugins/ios_adaptive_context_menu/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  ios_adaptive_context_menu: 66dd9a682d15e86be58a3b18a584435409d1460f
+
+PODFILE CHECKSUM: e30f02f9d1c72c47bb6344a0a748c9d268180865
+
+COCOAPODS: 1.16.2
