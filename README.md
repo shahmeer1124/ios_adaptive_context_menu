@@ -74,6 +74,20 @@ class DemoMenuButton extends StatelessWidget {
 - `IosContextMenuDivider`
 - `IosContextMenuSubmenu`
 
+## Why this approach is stable in Flutter UI
+
+When UIKit content is kept permanently embedded in the Flutter view hierarchy, it can cause rendering and interaction issues in some layouts.
+
+This package avoids that by using an on-demand native bridge:
+
+- The user taps a Flutter widget.
+- The tap is forwarded to native iOS code.
+- Native creates a temporary invisible UIKit anchor (`UIButton`) only for menu presentation.
+- The system context menu is shown from that temporary anchor.
+- The anchor is cleaned up after selection/dismissal (and also on widget dispose).
+
+Because no persistent UIKit view is mounted inside Flutter for normal rendering, this approach prevents common Flutter UI breakage caused by long-lived UIKit embedding.
+
 ## Screenshots
 
 | iOS | Android |
