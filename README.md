@@ -73,3 +73,9 @@ class DemoMenuButton extends StatelessWidget {
 - `IosContextMenuAction`
 - `IosContextMenuDivider`
 - `IosContextMenuSubmenu`
+
+## Screenshots
+
+| iOS | Android |
+| --- | --- |
+| ![iOS screenshot](screenshots/ios-context-menu.png) | ![Android screenshot](screenshots/android-context-menu.png) |

@@ -1,13 +1,20 @@
 name: ios_adaptive_context_menu
 description: Flutter plugin to show a native iOS context menu on single tap.
 version: 0.1.0
-homepage: https://pub.dev/packages/ios_adaptive_context_menu
+homepage: https://github.com/shahmeer1124/ios_adaptive_context_menu
+repository: https://github.com/shahmeer1124/ios_adaptive_context_menu
+issue_tracker: https://github.com/shahmeer1124/ios_adaptive_context_menu/issues
 documentation: https://pub.dev/documentation/ios_adaptive_context_menu/latest/
 topics:
   - ios
   - context-menu
   - flutter-plugin
   - cupertino
+screenshots:
+  - description: iOS native single-tap context menu with actions and submenu.
+    path: screenshots/ios-context-menu.png
+  - description: Android popup menu behavior using the same package API.
+    path: screenshots/android-context-menu.png
 
 environment:
   sdk: ^3.0.0
