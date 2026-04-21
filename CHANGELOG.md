@@ -1,3 +1,8 @@
+## 0.1.4
+
+- Added README notes explaining the temporary native anchor approach that avoids persistent UIKit embedding issues in Flutter layouts.
+- Refined release metadata and screenshots for clearer pub.dev package presentation.
+
 ## 0.1.1
 
 - Fixed iOS ghost-tap issue where a disposed tab could still open the context menu.

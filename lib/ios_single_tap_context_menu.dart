@@ -1,3 +1,6 @@
+/// Adaptive single-tap context menu widgets and models for iOS and Android.
+library ios_single_tap_context_menu;
+
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
@@ -6,13 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:svg_flutter/svg.dart';
 
+/// Base type for all context menu entries.
 @immutable
 abstract class IosContextMenuItem {
+  /// Creates a menu entry.
   const IosContextMenuItem();
 }
 
+/// Visual separator between action groups.
 @immutable
 class IosContextMenuDivider extends IosContextMenuItem {
+  /// Creates a divider item.
   const IosContextMenuDivider();
 
   @override
@@ -22,8 +29,10 @@ class IosContextMenuDivider extends IosContextMenuItem {
   int get hashCode => 0;
 }
 
+/// Nested menu entry that opens a child list of items.
 @immutable
 class IosContextMenuSubmenu extends IosContextMenuItem {
+  /// Creates a submenu entry.
   const IosContextMenuSubmenu({
     required this.title,
     required this.children,
@@ -31,9 +40,16 @@ class IosContextMenuSubmenu extends IosContextMenuItem {
     this.iconAssetPath,
   });
 
+  /// Label shown for this submenu.
   final String title;
+
+  /// SF Symbol name used on iOS when provided.
   final String? iconSystemName;
+
+  /// Asset path for an icon image.
   final String? iconAssetPath;
+
+  /// Child items shown when the submenu opens.
   final List<IosContextMenuItem> children;
 
   @override
@@ -57,8 +73,10 @@ class IosContextMenuSubmenu extends IosContextMenuItem {
       );
 }
 
+/// Tappable action in the context menu.
 @immutable
 class IosContextMenuAction extends IosContextMenuItem {
+  /// Creates an action entry.
   const IosContextMenuAction({
     required this.id,
     required this.title,
@@ -69,15 +87,25 @@ class IosContextMenuAction extends IosContextMenuItem {
     this.enabled = true,
   });
 
+  /// Unique action identifier returned in [IosSingleTapContextMenu.onSelected].
   final String id;
+
+  /// Label shown to the user.
   final String title;
 
+  /// SF Symbol name used on iOS when provided.
   final String? iconSystemName;
 
+  /// Asset path for an icon image.
   final String? iconAssetPath;
+
+  /// Whether to show a trailing checkmark.
   final bool showTrailingCheckmark;
 
+  /// Marks this action as destructive.
   final bool destructive;
+
+  /// Whether this action can be selected.
   final bool enabled;
 
   @override
@@ -107,7 +135,12 @@ class IosContextMenuAction extends IosContextMenuItem {
       );
 }
 
+/// Single-tap adaptive context menu widget.
+///
+/// On iOS it presents native `UIMenu`. On Android it shows a Material popup
+/// menu while keeping the same action model.
 class IosSingleTapContextMenu extends StatefulWidget {
+  /// Creates a single-tap context menu host.
   const IosSingleTapContextMenu({
     super.key,
     required this.child,
@@ -115,8 +148,13 @@ class IosSingleTapContextMenu extends StatefulWidget {
     this.onSelected,
   });
 
+  /// Child widget that triggers the menu.
   final Widget child;
+
+  /// Menu items shown when the user taps [child].
   final List<IosContextMenuItem> actions;
+
+  /// Callback invoked with selected [IosContextMenuAction.id].
   final ValueChanged<String>? onSelected;
 
   @override

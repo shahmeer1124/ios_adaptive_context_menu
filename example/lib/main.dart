@@ -112,6 +112,8 @@ class _ContextMenuExamplePageState extends State<ContextMenuExamplePage> {
                 ),
               ),
             ),
+            const SizedBox(height: 12),
+            Text('Last selected action: $_selectedId'),
           ],
         ),
       ),

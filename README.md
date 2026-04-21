@@ -1,13 +1,14 @@
 # ios_adaptive_context_menu
 
-Flutter plugin for showing the native iOS context menu on single tap.
+Flutter plugin for showing adaptive single-tap context menus on iOS and Android.
 
 ## Features
 
 - Opens the iOS system context menu with a single tap.
+- Opens a Material popup context menu on Android with the same API.
 - Supports actions, dividers, and nested submenus.
 - Supports SF Symbols (`iconSystemName`) and SVG asset icons (`iconAssetPath`).
-- iOS-first behavior: on non-iOS platforms, the child is rendered as-is.
+- Uses a unified action model across iOS and Android.
 
 ## Requirements
 
