@@ -4,6 +4,7 @@ import UIKit
 public final class IosSingleTapContextMenuPlugin: NSObject, FlutterPlugin {
   private let messenger: FlutterBinaryMessenger
   private weak var anchorButton: NoHighlightButton?
+  private var anchorButtonInstanceId: String?
 
   init(messenger: FlutterBinaryMessenger) {
     self.messenger = messenger
@@ -27,6 +28,9 @@ public final class IosSingleTapContextMenuPlugin: NSObject, FlutterPlugin {
         return
       }
       showMenu(from: call.arguments)
+      result(nil)
+    case "disposeInstance":
+      disposeInstance(from: call.arguments)
       result(nil)
     default:
       result(FlutterMethodNotImplemented)
@@ -76,6 +80,7 @@ public final class IosSingleTapContextMenuPlugin: NSObject, FlutterPlugin {
 
     rootView.addSubview(button)
     anchorButton = button
+    anchorButtonInstanceId = instanceId
 
     DispatchQueue.main.async {
       self.presentMenu(for: button)
@@ -114,6 +119,21 @@ public final class IosSingleTapContextMenuPlugin: NSObject, FlutterPlugin {
   private func cleanupAnchorButton() {
     anchorButton?.removeFromSuperview()
     anchorButton = nil
+    anchorButtonInstanceId = nil
+  }
+
+  private func disposeInstance(from args: Any?) {
+    guard
+      let dictionary = args as? [String: Any],
+      let instanceId = dictionary["instanceId"] as? String,
+      !instanceId.isEmpty
+    else {
+      return
+    }
+
+    if anchorButtonInstanceId == instanceId {
+      cleanupAnchorButton()
+    }
   }
 
   private func sendSelection(_ id: String, instanceId: String) {

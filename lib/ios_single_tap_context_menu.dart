@@ -152,6 +152,11 @@ class _IosSingleTapContextMenuState extends State<IosSingleTapContextMenu> {
 
   @override
   void dispose() {
+    if (_isIos) {
+      _iosHostChannel.invokeMethod<void>('disposeInstance', {
+        'instanceId': _instanceId,
+      });
+    }
     _iosInstanceChannel.setMethodCallHandler(null);
     super.dispose();
   }
